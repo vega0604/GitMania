@@ -126,7 +126,8 @@ app.ticker.add(() => {
         sprite.y += vy;
 
         // If the sprite goes off the screen, reset its position
-        if (sprite.x > app.screen.width) {
+        if (sprite.x > app.screen.width - sprite.width || sprite.x > app.screen.width - sprite.width) {
+
           sprite.x = 30;
         }
 
@@ -136,7 +137,7 @@ app.ticker.add(() => {
           vy = 0; // Reset vertical velocity when touching the bottom
         } else {
           // Apply gravity to simulate falling
-          vy += 3;
+          vy += 1;
         }
   
   
