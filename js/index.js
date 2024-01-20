@@ -24,10 +24,10 @@ let jumpSpeed = 600;
 let g = 20; // force of gravity
 
 //delta time
-      
 let t = 0;
 let priorTicks = 0;
 let dt = 0;
+
 // Add the sprite to the stage
 app.stage.addChild(sprite);
 
@@ -37,19 +37,19 @@ app.ticker.add(() => {
   dt = (t - priorTicks) / 1000;
   priorTicks = t;
 
-  console.log(dt);
+  // console.log(dt);
   // Update the sprite's position
   if (controller.wPressed && sprite.y >= app.screen.height - sprite.height) {
     vy -= jumpSpeed;
-    console.log("jumping");
+    // console.log("jumping");
   }
   if (controller.aPressed){
     sprite.x -= vx * dt;
-    console.log("left");
+    // console.log("left");
   }
   if (controller.dPressed){
     sprite.x += vx * dt;
-    console.log("right");
+    // console.log("right");
   }
 
   // Update the sprite's vertical position based on velocity

@@ -15,11 +15,5 @@
   "bugs": {
     "url": "https://github.com/vega0604/GitMania/issues"
   },
-  "homepage": "https://github.com/vega0604/GitMania#readme",
-  "type": "module",
-  "dependencies": {
-    "node-pty": "^1.0.0",
-    "os": "^0.1.2",
-    "ws": "^8.16.0"
-  }
+  "homepage": "https://github.com/vega0604/GitMania#readme"
 }
