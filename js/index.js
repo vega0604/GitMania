@@ -6,16 +6,30 @@ const app = new PIXI.Application({ width: window.innerWidth, height: window.inne
 // Append the canvas to the HTML body
 document.body.appendChild(app.view);
 
+
 // Load an image and create a sprite
 const sprite = PIXI.Sprite.from("./images/girlStanding.png");
+const platform = PIXI.Sprite.from("./images/platformMossy.png");
+
+
 
 // Size of sprite
-sprite.width = 200;
-sprite.height = 200;
+sprite.width = 164;
+sprite.height = 261;
+
+// Size of platform
+platform.width = 300;
+platform.height = 70;
 
 // Set the initial position of the sprite
 sprite.x = 30;
 sprite.y = 800;
+
+// Set the initial position of the platform
+platform.x = 1700;
+platform.y = 800;
+
+
 
 // Initial velocity values
 let vy = 0;
@@ -30,6 +44,7 @@ let dt = 0;
 
 // Add the sprite to the stage
 app.stage.addChild(sprite);
+app.stage.addChild(platform);
 
 // Set up the game loop
 app.ticker.add(() => {
@@ -71,5 +86,30 @@ app.ticker.add(() => {
     // Apply gravity to simulate falling
     vy += g;
   }
+
+       // Check for collision
+        if (isCollision(sprite, platform)) {
+          // Handle the collision (adjust sprite's position and velocity)
+          handleCollision(sprite, platform);
+        }
+      
+
 });
+
+   // Function to check for collision between two sprites
+      function isCollision(sprite, platform) {
+        return (
+          sprite.x < platform.x + platform.width &&
+          sprite.x + sprite.width > platform.x &&
+          sprite.y < platform.y + platform.height &&
+          sprite.y + sprite.height > platform.y
+        );
+      }
+
+      // Function to handle the collision
+      function handleCollision(sprite, platform) {
+        // Adjust the sprite's position and velocity based on the collision
+        sprite.y = platform.y - sprite.height; // Align sprite with the top of the platform
+        vy = 0; // Reset vertical velocity when touching the platform
+      }
  
