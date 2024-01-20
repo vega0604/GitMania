@@ -16,7 +16,10 @@
     "url": "https://github.com/vega0604/GitMania/issues"
   },
   "homepage": "https://github.com/vega0604/GitMania#readme",
+  "type": "module",
   "dependencies": {
-    "xterm": "^5.3.0"
+    "node-pty": "^1.0.0",
+    "os": "^0.1.2",
+    "ws": "^8.16.0"
   }
 }
