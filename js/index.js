@@ -14,20 +14,20 @@ const platform = PIXI.Sprite.from("./images/platformMossy.png");
 
 
 // Size of sprite
-sprite.width = 164;
-sprite.height = 261;
+sprite.width = 82;
+sprite.height = 130;
 
 // Size of platform
-platform.width = 300;
-platform.height = 70;
+platform.width = 182;
+platform.height = 34;
 
 // Set the initial position of the sprite
 sprite.x = 30;
 sprite.y = 800;
 
 // Set the initial position of the platform
-platform.x = 1700;
-platform.y = 800;
+platform.x = 1200;//1700;
+platform.y = 400;//800;
 
 
 
