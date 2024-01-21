@@ -34,18 +34,19 @@ function init() {
     });
 }
 
+// var terminalElement = document.querySelector(".xterm-helper-textarea");
 window.addEventListener("keydown", (e) => {
     if (e.key == "Enter") {
         enter();
-    // } else if (e.key == "Backspace"){
-    //     if (current){
-    //         current = current.slice(0, current.length-1);
-    //         term.write('\b \b');
-    //     }\\
+    } else if (e.key == "Backspace"){
+        // focus(terminalElement);
+        if (current){
+            current = current.slice(0, current.length-1);
+            term.write('\b \b');
+        }
     }
 });
 
-// var terminalElement = document.querySelector(".xterm-helper-textarea");
 
 // terminalElement.addEventListener("keydown", (e) => {
 //     if (e.key == "Backspace"){

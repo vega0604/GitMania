@@ -135,15 +135,6 @@ app.ticker.add(() => {
     // platform.x = app.renderer.plugins.interaction.mouse.global.x - platform.width / 2;
     // platform.y = app.renderer.plugins.interaction.mouse.global.y - platform.height / 2;
 
-
-
-       // Check for collision
-        if (isCollision(sprite, platform)) {
-          // Handle the collision (adjust sprite's position and velocity)
-          handleCollision(sprite, platform);
-        }
-      
-
 });
 
 // Function to check for collision between two sprites
