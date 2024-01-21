@@ -131,10 +131,14 @@ app.ticker.add(() => {
     vy += g;
   }  
   
+
     
     // platform.x = app.renderer.plugins.interaction.mouse.global.x - platform.width / 2;
     // platform.y = app.renderer.plugins.interaction.mouse.global.y - platform.height / 2;
-
+    if (controller.rightClickPressed) {
+        platform.x = app.renderer.plugins.interaction.mouse.global.x - platform.width / 2;
+        platform.y = app.renderer.plugins.interaction.mouse.global.y - platform.height / 2;
+    }
 
 
 });
@@ -148,6 +152,16 @@ function isCollision(sprite, platform) {
     sprite.y + sprite.height > platform.y
   );
 }
+// Function to handle right-click events
+window.addEventListener("contextmenu", function (event) {
+    event.preventDefault(); // Prevent the default context menu from appearing
+    controller.rightClickPressed = true;
+});
+
+// Function to handle mouse up events
+window.addEventListener("mouseup", function (event) {
+    controller.rightClickPressed = false;
+});
 
 // window.addEventListener("mousemove", MovePlatform);
 
