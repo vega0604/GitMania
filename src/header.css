@@ -1,0 +1,17 @@
+
+  .avatar {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .w-12 {
+    width: 3rem; /* Adjust the size as needed */
+  }
+
+  .rounded-full {
+    border-radius: 9999px; /* A large value to make it a circle */
+  }
+
+  .ring {
+    /* Add your ring styles here */
+  }
