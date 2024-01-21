@@ -1,7 +1,7 @@
 
 
 //Create a Pixi Application
-const app = new PIXI.Application({ width: window.innerWidth, height: window.innerHeight - (12 * 16), backgroundColor: 0xaaaaaa, });
+const app = new PIXI.Application({ width: window.innerWidth, height: window.innerHeight - (12 * 16) - 60, backgroundColor: 0xaaaaaa, });
 
 
 // Append the canvas to the HTML body
@@ -23,10 +23,10 @@ backgroundImage.height = app.screen.height;
 // Add the background image to the stage
 app.stage.addChild(backgroundImage);
 
-const portalGif = document.createElement('img');
-portalGif.src = 'images/portal.gif';
-const containerElement = document.body;
-containerElement.appendChild(portalGif);
+// const portalGif = document.createElement('img');
+// portalGif.src = 'images/portal.gif';
+// const containerElement = document.body;
+// containerElement.appendChild(portalGif);
 
 
 // Size of sprite
@@ -46,7 +46,7 @@ sprite.y = 800;
 
 // Set the initial position of the platform
 platform.x = 800;//1700;
-platform.y = 400;//800;
+platform.y = 300;//800;
 
 //portals location on screen
 portal.x = 1200;

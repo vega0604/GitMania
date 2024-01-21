@@ -3,20 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./output.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@4.19.0/css/xterm.css" />
     <link rel="stylesheet", href="/index.css">
     <script src="https://cdn.jsdelivr.net/npm/xterm@4.19.0/lib/xterm.js"></script>
     <script src="https://pixijs.download/v5.3.10/pixi.min.js"></script>
+      <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <title>Git Mania</title>
   </head>
+        <div class="dropdown">
+    <div tabindex="0" role="button" class="btn m-2">Command List</div>
+    <div tabindex="0" class="dropdown-content z-[1] card card-compact w-80 shadow bg-neutral text-primary-content">
+      <div class="card-body">
+        <!-- <h3 class="card-title">Command List</h3> -->
+        <img src="/images/commandListOpen.png" alt="">
+      </div>
+    </div>
+  </div>
+
 </head>
 <body>
- 
+  
   <div id="terminal"></div>
   <script src="/js/controller.js"></script>
   <script src="/js/inputHandler.js"> </script>
   <script src="/js/index.js"></script>
   <script src="/js/commands.js"></script>
   <script src="/js/terminal.js"></script>
+  
 </body>
 </html>
