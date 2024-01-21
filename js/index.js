@@ -46,6 +46,8 @@ let dt = 0;
 app.stage.addChild(sprite);
 app.stage.addChild(platform);
 
+// Save the original starting position of the character
+//const originalCharacterY = sprite.y;
 // Set up the game loop
 app.ticker.add(() => {
   t = Date.now();
@@ -87,18 +89,24 @@ app.ticker.add(() => {
     vy += g;
   }
 
-       // Check for collision
-        if (isCollision(sprite, platform)) {
-          // Handle the collision (adjust sprite's position and velocity)
-          handleCollision(sprite, platform);
-        }
+      //  // Check for collision
+      //   if (isCollision(sprite, platform)) {
+      //     // Handle the collision (adjust sprite's position and velocity)
+      //     handleCollision(sprite, platform);
+  //   }
+   // Check for collision
+  if (isCollision(sprite, platform)) {
+    // Handle the collision (adjust sprite's position and velocity)
+    handleCollision(sprite, platform); // originalCharacterY
+  }
       
 
 });
 
    // Function to check for collision between two sprites
       function isCollision(sprite, platform) {
-        return (
+        return (// if velocity is + then its falling down
+          // if the top of the platform is touching the bottom of the sprite
           sprite.x < platform.x + platform.width &&
           sprite.x + sprite.width > platform.x &&
           sprite.y < platform.y + platform.height &&
@@ -109,7 +117,23 @@ app.ticker.add(() => {
       // Function to handle the collision
       function handleCollision(sprite, platform) {
         // Adjust the sprite's position and velocity based on the collision
-        sprite.y = platform.y - sprite.height; // Align sprite with the top of the platform
-        vy = 0; // Reset vertical velocity when touching the platform
+       sprite.y = platform.y - sprite.height; // Align sprite with the top of the platform
+       vy = 0; // Reset vertical velocity when touching the platform
       }
- 
+ // Function to handle the collision
+// function handleCollision(sprite, platform) { // originalY
+//   // Check the direction of the sprite's velocity
+//   if (vy > 0) {
+//     // If velocity is positive, it's moving downward (falling)
+//    // sprite.y = platform.y - sprite.height; // Align sprite with the top of the platform
+//     vy = 0; // Reset vertical velocity when touching the platform
+//   } else if (vy < 0) {
+//     // If velocity is negative, it's moving upward (jumping)
+//     //sprite.y = platform.y + platform.height; // Align sprite with the bottom of the platform
+//     vy = 0; // Reset vertical velocity when touching the platform
+//   // } else {
+//   //   // If vy is 0, the sprite is neither jumping nor falling vertically
+//   //   // Adjust the sprite's position based on the original starting position
+//   //   //sprite.y = originalY;
+//   }
+//}
