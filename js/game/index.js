@@ -1,8 +1,7 @@
 
 
 //Create a Pixi Application
-const app = new PIXI.Application({ width: window.innerWidth, height: window.innerHeight - (12 * 16), backgroundColor: 0xaaaaaa, });
-
+const app = new PIXI.Application({ width: window.innerWidth, height: window.innerHeight - (10 * 16) - 60, backgroundColor: 0xaaaaaa, });
 
 // Append the canvas to the HTML body
 document.body.appendChild(app.view);
