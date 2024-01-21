@@ -26,8 +26,8 @@ sprite.x = 30;
 sprite.y = 800;
 
 // Set the initial position of the platform
-platform.x = 1700;
-platform.y = 800;
+platform.x = window.innerWidth - platform.width - 50;
+platform.y = 500;
 
 
 
@@ -88,28 +88,28 @@ app.ticker.add(() => {
   }
 
        // Check for collision
-        if (isCollision(sprite, platform)) {
-          // Handle the collision (adjust sprite's position and velocity)
-          handleCollision(sprite, platform);
-        }
+  if (isCollision(sprite, platform)) {
+    // Handle the collision (adjust sprite's position and velocity)
+    handleCollision(sprite, platform);
+  }
       
 
 });
 
-   // Function to check for collision between two sprites
-      function isCollision(sprite, platform) {
-        return (
-          sprite.x < platform.x + platform.width &&
-          sprite.x + sprite.width > platform.x &&
-          sprite.y < platform.y + platform.height &&
-          sprite.y + sprite.height > platform.y
-        );
-      }
+// Function to check for collision between two sprites
+function isCollision(sprite, platform) {
+  return (
+    sprite.x < platform.x + platform.width &&
+    sprite.x + sprite.width > platform.x &&
+    sprite.y < platform.y + platform.height &&
+    sprite.y + sprite.height > platform.y
+  );
+}
 
-      // Function to handle the collision
-      function handleCollision(sprite, platform) {
-        // Adjust the sprite's position and velocity based on the collision
-        sprite.y = platform.y - sprite.height; // Align sprite with the top of the platform
-        vy = 0; // Reset vertical velocity when touching the platform
-      }
+// Function to handle the collision
+function handleCollision(sprite, platform) {
+  // Adjust the sprite's position and velocity based on the collision
+  sprite.y = platform.y - sprite.height; // Align sprite with the top of the platform
+  vy = 0; // Reset vertical velocity when touching the platform
+}
  
