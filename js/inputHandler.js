@@ -10,3 +10,7 @@ window.addEventListener("keyup", (e) => {
   controller.release(e.key);
   console.log(e.key + " released");
 })
+
+
+// window.addEventListener("mousemove", MovePlatform);
+

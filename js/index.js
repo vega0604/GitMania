@@ -129,7 +129,13 @@ app.ticker.add(() => {
   else {
     // Apply gravity to simulate falling
     vy += g;
-  }      
+  }  
+  
+    
+    // platform.x = app.renderer.plugins.interaction.mouse.global.x - platform.width / 2;
+    // platform.y = app.renderer.plugins.interaction.mouse.global.y - platform.height / 2;
+
+
 
 });
 
@@ -143,3 +149,12 @@ function isCollision(sprite, platform) {
   );
 }
 
+// window.addEventListener("mousemove", MovePlatform);
+
+
+// function MovePlatform(event) {
+//     var centerX = platform.offsetWidth / 2;
+//     var centerY = platform.offsetHeight / 2;
+//     platform.style.left = event.clientX - centerX + "px";
+//     platform.style.top = event.clientY - centerY + "px";
+//   }
