@@ -14,20 +14,20 @@ const platform = PIXI.Sprite.from("./images/platformMossy.png");
 
 
 // Size of sprite
-sprite.width = 164;
-sprite.height = 261;
+sprite.width = 82;
+sprite.height = 130;
 
 // Size of platform
-platform.width = 300;
-platform.height = 70;
+platform.width = 182;
+platform.height = 34;
 
 // Set the initial position of the sprite
 sprite.x = 30;
 sprite.y = 800;
 
 // Set the initial position of the platform
-platform.x = window.innerWidth - platform.width - 50;
-platform.y = 500;
+platform.x = 1200;//1700;
+platform.y = 400;//800;
 
 
 
@@ -36,6 +36,7 @@ let vy = 0;
 let vx = 400;
 let jumpSpeed = 600;
 let g = 20; // force of gravity
+
 
 //delta time
 let t = 0;
@@ -46,6 +47,8 @@ let dt = 0;
 app.stage.addChild(sprite);
 app.stage.addChild(platform);
 
+// Save the original starting position of the character
+const originalCharacterY = sprite.y;
 // Set up the game loop
 app.ticker.add(() => {
   t = Date.now();
@@ -54,7 +57,7 @@ app.ticker.add(() => {
 
   // console.log(dt);
   // Update the sprite's position
-  if (controller.wPressed && sprite.y >= app.screen.height - sprite.height) {
+  if (controller.wPressed  && vy === 0) {//&& sprite.y >= app.screen.height - sprite.height
     vy -= jumpSpeed;
     // console.log("jumping");
   }
@@ -73,6 +76,7 @@ app.ticker.add(() => {
   // If the sprite goes off the screen, reset its position
   if (sprite.x >= app.screen.width) {
     sprite.x = 0;
+    
   }
   if (sprite.x <= -sprite.width){
     sprite.x = app.screen.width;
@@ -82,17 +86,16 @@ app.ticker.add(() => {
   if (sprite.y > app.screen.height - sprite.height) {
     sprite.y = app.screen.height - sprite.height;
     vy = 0; // Reset vertical velocity when touching the bottom
-  } else {
+  }else if (isCollision(sprite, platform)) {
+    // Handle the collision (adjust sprite's position and velocity)
+    //sprite.y = platform.y - sprite.height; // Align sprite with the top of the platform
+    vy = 0; // Reset vertical velocity when touching the platform
+  
+  } 
+  else {
     // Apply gravity to simulate falling
     vy += g;
-  }
-
-       // Check for collision
-  if (isCollision(sprite, platform)) {
-    // Handle the collision (adjust sprite's position and velocity)
-    handleCollision(sprite, platform);
-  }
-      
+  }      
 
 });
 
@@ -105,11 +108,3 @@ function isCollision(sprite, platform) {
     sprite.y + sprite.height > platform.y
   );
 }
-
-// Function to handle the collision
-function handleCollision(sprite, platform) {
-  // Adjust the sprite's position and velocity based on the collision
-  sprite.y = platform.y - sprite.height; // Align sprite with the top of the platform
-  vy = 0; // Reset vertical velocity when touching the platform
-}
- 
