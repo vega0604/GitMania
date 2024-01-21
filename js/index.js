@@ -119,6 +119,13 @@ app.ticker.add(() => {
     vy = 0; // Reset vertical velocity when touching the platform
   
   } 
+  else if (isCollision(sprite, portal)) {
+    // Handle the collision (adjust sprite's position and velocity)
+    //sprite.y = platform.y - sprite.height; // Align sprite with the top of the platform
+    console.log('Collided with portal!');
+      sprite.visible = false;
+  
+  } 
   else {
     // Apply gravity to simulate falling
     vy += g;
@@ -135,3 +142,4 @@ function isCollision(sprite, platform) {
     sprite.y + sprite.height > platform.y
   );
 }
+
