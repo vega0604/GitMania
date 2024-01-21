@@ -64,7 +64,7 @@ function enter() {
 }
 
 function prompt() {
-    term.write(`\r${lastName.toLowerCase()}@${firstName.toLowerCase()}:~$ `);
+    term.write(`\rGit@Mania:~$ `);
 }
 
 function execute(){
