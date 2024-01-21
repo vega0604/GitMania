@@ -5,8 +5,6 @@ var term = new Terminal({
 term.open(document.getElementById('terminal'));
 
 let current = "";
-let firstName = "Sebastian";
-let lastName = "Vega";
 
 function init() {
     if (term._initialized) {
