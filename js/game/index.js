@@ -7,8 +7,30 @@ const app = new PIXI.Application({ width: window.innerWidth, height: window.inne
 document.body.appendChild(app.view);
 
 
+const runningTextures = [];
+
+for (let i=0;i<6;i++){
+  var path = `./images/run/run_${i}.png`;
+
+  runningTextures.push(PIXI.Texture.from(path));
+}
+
+const jumpingTextures = [];
+
+for (let i=0;i<6;i++){
+  var path = `./images/jump/jump_${i}.png`;
+  jumpingTextures.push(PIXI.Texture.from(path));
+}
+
+const idleTextures = [];
+
+for (let i=0;i<4;i++){
+  var path = `./images/idle/idle_${i}.png`;
+  idleTextures.push(PIXI.Texture.from(path));
+}
+
 // Load an image and create a sprite
-const sprite = PIXI.Sprite.from("./images/girlStanding.png");
+const sprite = new PIXI.AnimatedSprite(idleTextures);
 const platform = PIXI.Sprite.from("./images/platformMossy.png");
 const backgroundTexture = PIXI.Texture.from("./images/brickWall.png");
 const backgroundImage = new PIXI.Sprite(backgroundTexture);
@@ -42,6 +64,9 @@ portal.height = 96;
 sprite.x = 100;
 sprite.y = 100;
 
+sprite.animationSpeed = 0.1;
+sprite.autoUpdate = true;
+
 // Set the initial position of the platform
 platform.x = 800;//1700;
 platform.y = 400;//800;
@@ -65,16 +90,25 @@ app.stage.addChild(portal);
 
 function checkInputs(){
   vx = 0;
+
+  if (!controller.wPressed && !controller.aPressed && !controller.dPressed){
+    sprite.textures = idleTextures;
+  }
   
   if (controller.wPressed && !jumping) {
     vy -= jumpSpeed;
     jumping = true;
+    sprite.textures = jumpingTextures;
   }
   if (controller.aPressed){
     vx = -moveSpeed;
+    sprite.scale.x = -2;
+    sprite.textures = runningTextures;
   }
   if (controller.dPressed){
     vx = moveSpeed;
+    sprite.scale.x = 2;
+    sprite.textures = runningTextures;
   }
 }
 
@@ -92,6 +126,7 @@ function checkCollisions(){
 }
 
 function update(dt){
+
   vy += g;
   sprite.y += vy * dt;
   sprite.y = Math.min(app.screen.height - sprite.height, sprite.y);
@@ -125,6 +160,7 @@ app.ticker.add(() => {
   dt = (t - priorTicks) / 1000;
   priorTicks = t;
 
+  sprite.play();
   checkInputs();
   update(dt);
   checkCollisions();
