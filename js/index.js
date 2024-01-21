@@ -97,6 +97,13 @@ app.ticker.add(() => {
     vy += g;
   }      
 
+       // Check for collision
+        if (isCollision(sprite, platform)) {
+          // Handle the collision (adjust sprite's position and velocity)
+          handleCollision(sprite, platform);
+        }
+      
+
 });
 
 // Function to check for collision between two sprites

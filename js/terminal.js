@@ -18,41 +18,51 @@ function init() {
     term._initialized = true;
     
     term.write("\n");
-    prompt(term);
+    prompt();
 
     term.onKey((e) => {
-        if (e.key == "\r"){
+        console.log(e.key);
+        const printable = !e.altKey && !e.ctrlKey && !e.metaKey;
+        if (e.key === '\r'){
             enter();
             return;
+        } else if (printable){
+            console.log(document.activeElement);
+            term.write(e.key);
+            current += e.key;
         }
-        if (e.key == "Backspace"){
-            backspace();
-            current = current.slice(0, current.length-1);
-            return;
-        }
-        term.write(e.key);
-        current += e.key;
     });
 }
 
 window.addEventListener("keydown", (e) => {
     if (e.key == "Enter") {
         enter();
+    // } else if (e.key == "Backspace"){
+    //     if (current){
+    //         current = current.slice(0, current.length-1);
+    //         term.write('\b \b');
+    //     }\\
     }
 });
 
+// var terminalElement = document.querySelector(".xterm-helper-textarea");
+
+// terminalElement.addEventListener("keydown", (e) => {
+//     if (e.key == "Backspace"){
+//         if (current){
+//             current = current.slice(0, current.length-1);
+//             term.write('\b \b');
+//         }
+//     }
+// })
+
 function enter() {
     execute();
-    term.write("\n");
-    prompt(term);
+    term.write("\r\n");
+    prompt();
 }
 
-function backspace(){
-    term.clear();
-    term.write(current);
-}
-
-function prompt(term) {
+function prompt() {
     term.write(`\r${lastName.toLowerCase()}@${firstName.toLowerCase()}:~$ `);
 }
 
@@ -87,7 +97,7 @@ function execute(){
     }
 
     if (currentCopy == "git log"){
-
+        displayLog(term);
     }
 }
 

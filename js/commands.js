@@ -65,3 +65,15 @@ function clearCookies(){
     document.cookie = "buffer={}";
     document.cookie = "history={}";
 }
+
+function displayLog(terminal){
+    var hist = loadHistory();
+    console.log(hist);
+    for (address in Object.keys(hist)){
+        console.log(address);
+        // console.log(hist[addr]);
+        // console.log(hist[addr].msg)
+        var output = `\r\nAddress: ${address}, Msg: ${hist[address].msg}`;
+        terminal.write(output);
+    }
+}
